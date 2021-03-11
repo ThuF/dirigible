@@ -27,7 +27,8 @@ jobs:
       run: |
         mkdir charts-temp
         cp -r releng/helm-charts/ charts-temp/
-        git checkout -b gh-pages origin/gh-pages
+        git fetch
+        git checkout gh-pages
         cp -r charts/ .
         ls
         cd charts-temp/
