@@ -32,9 +32,14 @@ jobs:
         
         cp charts/* .
 
-    - name: Helm Charts Release - Set Dirigible version
+    - name: Helm Charts Release - Set Chart Version - Dirigible
       run: |
-        cd charts-temp/helm-charts/
+        cd charts-temp/helm-charts/dirigible/
+        find *.yaml -type f -exec sed -i ''s/#{DirigibleVersion}#/${{ env.DIRIGIBLE_VERSION }}/g'' {} \;
+
+    - name: Helm Charts Release - Set Chart Version - Dirigible - Kyma
+      run: |
+        cd charts-temp/helm-charts/dirigible-kyma/
         find *.yaml -type f -exec sed -i ''s/#{DirigibleVersion}#/${{ env.DIRIGIBLE_VERSION }}/g'' {} \;
 
     - name: Helm Charts Release
@@ -44,6 +49,7 @@ jobs:
         pwd
         ls
         cat dirigible/Chart.yaml
+        cat dirigible-kyma/Chart.yaml
         
         helm package dirigible
         helm package dirigible-kyma
