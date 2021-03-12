@@ -28,20 +28,13 @@ jobs:
         mkdir charts-temp
         cp -r releng/helm-charts/ charts-temp/
         git fetch
-        git checkout gh-pages
-
-        ## Used for debugging purposes
-        pwd
-        ls
-        git status
-        ##########
+        git checkout gh-pages-
         
         cp charts/* .
-
-        ls
-        git status
-
         cd charts-temp/
+        
+        pwd
+        ls
 
         ########################################
         ########################################
