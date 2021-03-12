@@ -23,7 +23,7 @@ jobs:
 ######################################################
     - name: Helm tool installer
       uses: Azure/setup-helm@v1
-    - name: Helm Charts Release
+    - name: Helm Charts Release - Checkout gh-pages
       run: |
         mkdir charts-temp
         cp -r releng/helm-charts/ charts-temp/
@@ -32,15 +32,12 @@ jobs:
         
         cp charts/* .
         cd charts-temp/helm-charts/
-        
-        pwd
-        ls
 
-        ########################################
-        ########################################
-        ### TODO: Set new Dirigible Version! ###
-        ########################################
-        ########################################
+    - name: Helm Charts Release - Set Dirigible version
+      run: find *.yaml -type f -exec sed -i ''s/#{DirigibleVersion}#/${{ env.DIRIGIBLE_VERSION }}/g'' {} \;
+
+    - name: Helm Charts Release
+      run: |
 
         helm package dirigible
         helm package dirigible-kyma
