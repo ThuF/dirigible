@@ -31,7 +31,7 @@ jobs:
         git checkout gh-pages
         
         cp charts/* .
-        cd charts-temp/
+        cd charts-temp/helm-charts/
         
         pwd
         ls
@@ -49,9 +49,11 @@ jobs:
         cd ..
         helm repo index charts-temp/ --url https://github.com/eclipse/dirigible/releases/download/v$DIRIGIBLE_VERSION
         
-        cp charts-temp/index.yaml .
-        cp charts-temp/chart-dirigible-$DIRIGIBLE_VERSION.tgz charts/
-        cp charts-temp/chart-dirigible-kyma-$DIRIGIBLE_VERSION.tgz charts/
+        cp charts-temp/index.yaml ../.
+        cp charts-temp/chart-dirigible-$DIRIGIBLE_VERSION.tgz ../charts/
+        cp charts-temp/chart-dirigible-kyma-$DIRIGIBLE_VERSION.tgz ../charts/
+
+        cd ..
         git add index.yaml
         git add charts/
         git commit -m "Updates Helm Charts - Release $DIRIGIBLE_VERSION"
@@ -148,7 +150,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: chart-dirigible-$DIRIGIBLE_VERSION.tgz
+        asset_path: charts/chart-dirigible-$DIRIGIBLE_VERSION.tgz
         asset_name: chart-dirigible-$DIRIGIBLE_VERSION.tgz
         asset_content_type: application/zip
 
@@ -159,7 +161,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: chart-dirigible-kyma-$DIRIGIBLE_VERSION.tgz
+        asset_path: charts/chart-dirigible-kyma-$DIRIGIBLE_VERSION.tgz
         asset_name: chart-dirigible-kyma-$DIRIGIBLE_VERSION.tgz
         asset_content_type: application/zip
 
