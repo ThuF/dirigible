@@ -167,3 +167,11 @@ jobs:
         asset_name: chart-dirigible-kyma-{{ env.DIRIGIBLE_VERSION }}.tgz
         asset_content_type: application/zip
 
+#### Also important!!!! -> add git checkout master!
+    - name: Create GitHub Branch
+      run: |
+        git checkout master
+        git checkout -b $DIRIGIBLE_VERSION
+        git push origin $DIRIGIBLE_VERSION
+
+
