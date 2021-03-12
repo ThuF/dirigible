@@ -47,11 +47,11 @@ jobs:
         mv dirigible-$DIRIGIBLE_VERSION.tgz chart-dirigible-$DIRIGIBLE_VERSION.tgz
         mv dirigible-kyma-$DIRIGIBLE_VERSION.tgz chart-dirigible-kyma-$DIRIGIBLE_VERSION.tgz
         cd ..
-        helm repo index charts-temp/ --url https://github.com/eclipse/dirigible/releases/download/v$DIRIGIBLE_VERSION
+        helm repo index helm-charts/ --url https://github.com/eclipse/dirigible/releases/download/v$DIRIGIBLE_VERSION
         
-        cp charts-temp/index.yaml ../.
-        cp charts-temp/chart-dirigible-$DIRIGIBLE_VERSION.tgz ../charts/
-        cp charts-temp/chart-dirigible-kyma-$DIRIGIBLE_VERSION.tgz ../charts/
+        cp helm-charts/index.yaml ../.
+        cp helm-charts/chart-dirigible-$DIRIGIBLE_VERSION.tgz ../charts/
+        cp helm-charts/chart-dirigible-kyma-$DIRIGIBLE_VERSION.tgz ../charts/
 
         cd ..
         git add index.yaml
