@@ -63,6 +63,10 @@ jobs:
 
         git add .
         git reset --hard
+        pwd
+        ls
+        ls charts/
+        
         #git checkout master
         
 ######################################################
@@ -152,7 +156,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: charts/chart-dirigible-{{ env.DIRIGIBLE_VERSION }}.tgz
+        asset_path: ./charts/chart-dirigible-{{ env.DIRIGIBLE_VERSION }}.tgz
         asset_name: chart-dirigible-{{ env.DIRIGIBLE_VERSION }}.tgz
         asset_content_type: application/zip
 
@@ -163,7 +167,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: charts/chart-dirigible-kyma-{{ env.DIRIGIBLE_VERSION }}.tgz
+        asset_path: ./charts/chart-dirigible-kyma-{{ env.DIRIGIBLE_VERSION }}.tgz
         asset_name: chart-dirigible-kyma-{{ env.DIRIGIBLE_VERSION }}.tgz
         asset_content_type: application/zip
 
