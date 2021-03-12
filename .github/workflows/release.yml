@@ -31,7 +31,6 @@ jobs:
         git checkout gh-pages
         
         cp charts/* .
-        cd charts-temp/helm-charts/
 
     - name: Helm Charts Release - Set Dirigible version
       run: find *.yaml -type f -exec sed -i ''s/#{DirigibleVersion}#/${{ env.DIRIGIBLE_VERSION }}/g'' {} \;
@@ -39,6 +38,10 @@ jobs:
     - name: Helm Charts Release
       run: |
 
+        pwd
+        ls
+
+        cd charts-temp/helm-charts/
         helm package dirigible
         helm package dirigible-kyma
         mv dirigible-$DIRIGIBLE_VERSION.tgz chart-dirigible-$DIRIGIBLE_VERSION.tgz
