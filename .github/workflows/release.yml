@@ -45,12 +45,17 @@ jobs:
     - name: Helm Charts Release
       run: |
 
+        cp charts/* charts-temp/helm-charts/
         cd charts-temp/helm-charts/
-        pwd
+
+        ## TODO: Delete me!!!
+        ## TODO: Delete me!!!
+        ## TODO: Delete me!!!
         ls
-        cat dirigible/Chart.yaml
-        cat dirigible-kyma/Chart.yaml
-        
+        ## TODO: Delete me!!!
+        ## TODO: Delete me!!!
+        ## TODO: Delete me!!!
+
         helm package dirigible
         helm package dirigible-kyma
         mv dirigible-$DIRIGIBLE_VERSION.tgz chart-dirigible-$DIRIGIBLE_VERSION.tgz
