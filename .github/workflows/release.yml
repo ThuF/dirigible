@@ -29,6 +29,13 @@ jobs:
         cp -r releng/helm-charts/ charts-temp/
         git fetch
         git checkout gh-pages
+
+        ## Used for debugging purposes
+        pwd
+        ls
+        git status
+        ##########
+        
         cp -r charts/ .
         ls
         cd charts-temp/
